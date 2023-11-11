@@ -57,20 +57,13 @@ function Listpage(){
         let val=[]
         if(localStorage.getItem('array')){
           val=JSON.parse(localStorage.getItem('array'))
-          val.push(name)
+          val.unshift(name)
         }
         else{
-          val.push(name)
+          val.unshift(name)
         }
         localStorage.setItem('array',JSON.stringify(val))
-        setarr((prev)=>{
-           return(
-            [
-              ...prev,
-              name
-            ]
-           )
-        })
+        setarr(val)
         setname("")
 
   }
