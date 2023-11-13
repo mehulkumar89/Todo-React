@@ -24,9 +24,9 @@ function Listpage() {
   }, [])
 
   function edit() {
-    let val=ind
-    if(!check){
-      val=ind+4;
+    let val = ind
+    if (!check) {
+      val = ind + 4;
     }
     let value = JSON.parse(localStorage.getItem('array'))
     console.log(val)
@@ -57,10 +57,10 @@ function Listpage() {
     setind(index)
   }
   function handldel(indx) {
-    if (ind == -1) {
+    if (ind === -1) {
       if (window.confirm('are you really want to delete')) {
-        if(!check){
-          indx=indx+4
+        if (!check) {
+          indx = indx + 4
         }
         let index = nextbtn - 1
         let ans = []
@@ -72,9 +72,13 @@ function Listpage() {
         localStorage.setItem('array', JSON.stringify(ans))
         setarr(ans)
         if (index >= -1)
-        localStorage.setItem("index", index)
+          localStorage.setItem("index", index)
         setnextbtn(index)
         setaddbtn(true)
+        if (!check) {
+          setcheck(true)
+          setnextName('Next')
+        }
       }
     }
   }
@@ -93,7 +97,7 @@ function Listpage() {
     else {
       let val = JSON.parse(localStorage.getItem('array'))
       let ans = []
-      for (let i = 0; i <4; i++) {
+      for (let i = 0; i < 4; i++) {
         ans.push(val[i]);
       }
       setarr(ans)
@@ -103,7 +107,6 @@ function Listpage() {
     }
   }
   function handlesubmit() {
-    console.log(nextbtn)
     let val = []
     let index = nextbtn + 1
     if (localStorage.getItem('array')) {
@@ -133,7 +136,7 @@ function Listpage() {
         </div>
       )}
       {arr.map((items, index) => {
-        if (index < 4) {
+        if (index < 4 || !check) {
           return (
             <>
 
